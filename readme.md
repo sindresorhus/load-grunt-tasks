@@ -2,7 +2,7 @@
 
 > Load multiple grunt tasks using globbing patterns
 
-Usually you would have to load each task one by one, which is unnecessary cumbersome.
+Usually you would have to load each task one by one, which is unnecessarily cumbersome.
 
 This module will read the `devDependencies` in your package.json and load the tasks that matches your patterns.
 
