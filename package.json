@@ -1,0 +1,43 @@
+{
+  "name": "load-grunt-tasks",
+  "version": "0.0.0",
+  "description": "Load multiple grunt tasks using globbing patterns",
+  "keywords": [
+    "grunt",
+    "load",
+    "require",
+    "tasks",
+    "glob",
+    "pattern",
+    "match"
+  ],
+  "homepage": "https://github.com/sindresorhus/load-grunt-tasks",
+  "bugs": "https://github.com/sindresorhus/load-grunt-tasks/issues",
+  "license": "MIT",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "files": [
+    "load-grunt-tasks.js"
+  ],
+  "main": "load-grunt-tasks",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sindresorhus/load-grunt-tasks.git"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "dependencies": {
+    "minimatch": "~0.2.12"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-svgmin": "~0.2.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
