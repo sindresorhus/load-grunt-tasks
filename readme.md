@@ -31,7 +31,7 @@ require('load-grunt-tasks')(grunt);
 
 ## Install
 
-Install with [npm](https://npmjs.org/package/load-grunt-tasks): `npm install --save load-grunt-tasks`
+Install with [npm](https://npmjs.org/package/load-grunt-tasks): `npm install --save-dev load-grunt-tasks`
 
 
 ## Example
