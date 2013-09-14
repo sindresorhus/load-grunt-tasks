@@ -17,7 +17,7 @@ module.exports = function (grunt, patterns, pkg, depTypes) {
 		pkg = require(path.resolve(process.cwd(), 'package.json'));
 	}
 
-	if (typeof depTypes === undefined) {
+	if (depTypes === undefined) {
 		depTypes = 'devDependencies';
 	}
 
@@ -30,7 +30,7 @@ module.exports = function (grunt, patterns, pkg, depTypes) {
 	_.each(depTypes, function(value) {
 		if (pkg[value]) {
 			deps = deps.concat(Object.keys(pkg[value]));
-        }
+		}
 	});
 
 	var tasks = patterns.map(function (pattern) {
