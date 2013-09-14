@@ -2,7 +2,7 @@
 var path = require('path');
 var minimatch = require('minimatch');
 
-module.exports = function (grunt, patterns, pkg) {
+module.exports = function (grunt, patterns, pkg, depTypes) {
 	var _ = grunt.util._;
 
 	if (patterns === undefined) {
@@ -17,14 +17,24 @@ module.exports = function (grunt, patterns, pkg) {
 		pkg = require(path.resolve(process.cwd(), 'package.json'));
 	}
 
-	if (!pkg.devDependencies) {
-		return;
+	if (typeof depTypes === undefined) {
+		depTypes = 'devDependencies';
 	}
 
-	var devDeps = Object.keys(pkg.devDependencies);
+	if (typeof depTypes === 'string') {
+		depTypes = [depTypes];
+	}
+
+	var deps = [];
+
+	_.each(depTypes, function(value) {
+		if (pkg[value]) {
+			deps = deps.concat(Object.keys(pkg[value]));
+        }
+	});
 
 	var tasks = patterns.map(function (pattern) {
-		return minimatch.match(devDeps, pattern, {});
+		return minimatch.match(deps, pattern, {});
 	});
 
 	_.unique(_.flatten(tasks)).forEach(grunt.loadNpmTasks);

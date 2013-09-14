@@ -69,6 +69,13 @@ You also have the option to specify the package.json as an object if it's not in
 require('load-grunt-tasks')(grunt, 'grunt-shell', require('../package'));
 ```
 
+Finally, you can specify to use something other than `devDependencies`. 
+
+```js
+require('load-grunt-tasks')(grunt, 'grunt-shell', require('../package'), 'peerDependencies');
+require('load-grunt-tasks')(grunt, 'grunt-shell', require('../package'), ['devDependencies', 'peerDependencies']);
+```
+
 
 ## License
 
