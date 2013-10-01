@@ -13,6 +13,9 @@ module.exports = function (grunt, patterns, pkg) {
 		patterns = [patterns];
 	}
 
+	// Always ignore `grunt-cli`
+	patterns.push('!grunt-cli');
+
 	if (typeof pkg !== 'object') {
 		pkg = require(path.resolve(process.cwd(), 'package.json'));
 	}
