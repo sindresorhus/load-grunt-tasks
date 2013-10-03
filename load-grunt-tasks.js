@@ -2,33 +2,34 @@
 var path = require('path');
 var minimatch = require('minimatch');
 
-module.exports = function (grunt, patterns, pkg) {
+module.exports = function (grunt, pattern, pkg, ignore) {
 	var _ = grunt.util._;
 
-	if (patterns === undefined) {
-		patterns = 'grunt-*';
+	if (pattern === undefined) {
+		pattern = 'grunt-*';
 	}
 
-	if (typeof patterns === 'string') {
-		patterns = [patterns];
+	if (ignore === undefined) {
+		ignore = [];
 	}
 
 	// always ignore these modules
-	patterns.push('!grunt', '!grunt-cli');
+	ignore.push('grunt', 'grunt-cli');
 
 	if (typeof pkg !== 'object') {
 		pkg = require(path.resolve(process.cwd(), 'package.json'));
 	}
 
-	if (!pkg.devDependencies) {
+	var deps = _.extend({}, pkg.dependencies, pkg.devDependencies);
+	var depNames = Object.keys(deps);
+
+	if (!depNames.length) {
 		return;
 	}
 
-	var devDeps = Object.keys(pkg.devDependencies);
+	var tasks = minimatch.match(depNames, pattern, {});
 
-	var tasks = patterns.map(function (pattern) {
-		return minimatch.match(devDeps, pattern, {});
-	});
-
-	_.unique(_.flatten(tasks)).forEach(grunt.loadNpmTasks);
+	_.unique(tasks).filter(function (task) {
+		return ignore.indexOf(task) === -1;
+	}).forEach(grunt.loadNpmTasks);
 };
