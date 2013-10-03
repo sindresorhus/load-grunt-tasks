@@ -4,7 +4,7 @@
 
 Usually you would have to load each task one by one, which is unnecessarily cumbersome.
 
-This module will read the `devDependencies` in your package.json and load the tasks that matches your patterns.
+This module will read the `dependencies` and `devDependencies` in your package.json and load the tasks that matches your patterns.
 
 
 #### Before
@@ -49,7 +49,7 @@ module.exports = function (grunt) {
 
 By default `grunt-*` will be used as the [globbing pattern](https://github.com/isaacs/minimatch).
 
-You can optionally specify a pattern or an array of patterns:
+You can optionally specify a pattern:
 
 ```js
 require('load-grunt-tasks')(grunt, 'grunt-shell');
@@ -59,16 +59,17 @@ require('load-grunt-tasks')(grunt, 'grunt-shell');
 require('load-grunt-tasks')(grunt, 'grunt-contrib-*');
 ```
 
-```js
-require('load-grunt-tasks')(grunt, ['grunt-contrib-*', 'grunt-shell']);
-```
-
 You also have the option to specify the package.json as an object if it's not in the same folder as your Gruntfile:
 
 ```js
 require('load-grunt-tasks')(grunt, 'grunt-shell', require('../package'));
 ```
 
+If you want to blacklist a certain list of packages, you can list them as fourth parameter:
+
+```js
+require('load-grunt-tasks')(grunt, 'grunt-*', require('../package'), ['grunt-concurrent']);
+```
 
 ## License
 
