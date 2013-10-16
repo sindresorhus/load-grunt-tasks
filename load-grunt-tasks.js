@@ -4,8 +4,6 @@ var minimatch = require('minimatch');
 var _ = require('lodash');
 
 module.exports = function (grunt, patterns, pkg) {
-	var blacklist = ['grunt', 'grunt-cli'];
-
 	if (patterns === undefined) {
 		patterns = 'grunt-*';
 	}
@@ -28,5 +26,5 @@ module.exports = function (grunt, patterns, pkg) {
 		return minimatch.match(devDeps, pattern, {});
 	});
 
-	_(tasks).flatten().uniq().pull(blacklist).forEach(grunt.loadNpmTasks);
+	_(tasks).flatten().uniq().pull('grunt', 'grunt-cli').forEach(grunt.loadNpmTasks);
 };
