@@ -1,9 +1,10 @@
 'use strict';
 var path = require('path');
 var minimatch = require('minimatch');
+var _ = require('lodash');
 
 module.exports = function (grunt, patterns, pkg) {
-	var _ = grunt.util._;
+	var blacklist = ['grunt', 'grunt-cli'];
 
 	if (patterns === undefined) {
 		patterns = 'grunt-*';
@@ -12,9 +13,6 @@ module.exports = function (grunt, patterns, pkg) {
 	if (typeof patterns === 'string') {
 		patterns = [patterns];
 	}
-
-	// always ignore these modules
-	patterns.push('!grunt', '!grunt-cli');
 
 	if (typeof pkg !== 'object') {
 		pkg = require(path.resolve(process.cwd(), 'package.json'));
@@ -30,5 +28,5 @@ module.exports = function (grunt, patterns, pkg) {
 		return minimatch.match(devDeps, pattern, {});
 	});
 
-	_.unique(_.flatten(tasks)).forEach(grunt.loadNpmTasks);
+	_(tasks).flatten().uniq().pull(blacklist).forEach(grunt.loadNpmTasks);
 };
