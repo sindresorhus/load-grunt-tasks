@@ -32,7 +32,7 @@ module.exports = function (grunt, patterns, pkg) {
     }).flatten().uniq().value();
   }
 
-  var tasks = _.difference(match(patterns), match(excludes)).pull('grunt', 'grunt-cli');
+  var tasks = _.chain(match(patterns)).difference(match(excludes)).pull('grunt', 'grunt-cli');
 
   _(tasks).forEach(grunt.loadNpmTasks);
 };
