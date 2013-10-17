@@ -22,9 +22,17 @@ module.exports = function (grunt, patterns, pkg) {
 
 	var devDeps = Object.keys(pkg.devDependencies);
 
-	var tasks = patterns.map(function (pattern) {
-		return minimatch.match(devDeps, pattern, {});
-	});
+  var excludes = _(patterns)
+    .remove(function (p) { return !p.indexOf('!'); })
+    .map(function (p) { return p.slice(1); });
 
-	_(tasks).flatten().uniq().pull('grunt', 'grunt-cli').forEach(grunt.loadNpmTasks);
+  var match = function(patterns) {
+    return _(patterns).map(function (pattern) {
+      return minimatch.match(devDeps, pattern, {});
+    }).flatten().uniq().value();
+  }
+
+  var tasks = _.chain(match(patterns)).difference(match(excludes)).pull('grunt', 'grunt-cli');
+
+  _(tasks).forEach(grunt.loadNpmTasks);
 };
