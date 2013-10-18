@@ -1,6 +1,10 @@
 'use strict';
 module.exports = function (grunt) {
-	require('./load-grunt-tasks')(grunt, ['grunt-*'], require('./package'));
+	require('./load-grunt-tasks')(grunt, {
+		pattern: ['*'],
+		config: require('./package'),
+		limit: 'devDependencies'
+	});
 
 	grunt.initConfig({
 		svgmin: {

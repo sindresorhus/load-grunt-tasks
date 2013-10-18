@@ -4,7 +4,9 @@
 
 Usually you would have to load each task one by one, which is unnecessarily cumbersome.
 
-This module will read the `devDependencies` in your package.json and load the tasks that matches your patterns.
+This module will read the `dependencies`/`devDependencies`/`peerDependencies` in your package.json and load grunt tasks that matches the provided patterns.
+
+**Note the new argument signature as of 0.2.0.**
 
 
 #### Before
@@ -34,7 +36,7 @@ require('load-grunt-tasks')(grunt);
 Install with [npm](https://npmjs.org/package/load-grunt-tasks): `npm install --save-dev load-grunt-tasks`
 
 
-## Example
+## Example config
 
 ```js
 // Gruntfile.js
@@ -42,34 +44,91 @@ module.exports = function (grunt) {
 	// load all grunt tasks matching the `grunt-*` pattern
 	require('load-grunt-tasks')(grunt);
 
-	grunt.initConfig();
+	grunt.initConfig({});
 	grunt.registerTask('default', []);
 }
 ```
 
+
+## Usage examples
+
+### Load all grunt tasks
+
+```js
+require('load-grunt-tasks')(grunt);
+```
+
+Equivalent to:
+
+```js
+require('load-grunt-tasks')(grunt, {pattern: 'grunt-*'});
+```
+
+### Load all grunt-contrib tasks
+
+```js
+require('load-grunt-tasks')(grunt, {pattern: 'grunt-contrib-*'});
+```
+
+### Load all grunt-contrib tasks and another non-contrib task
+
+```js
+require('load-grunt-tasks')(grunt, {pattern: ['grunt-contrib-*', 'grunt-shell']});
+```
+
+### Load all grunt-contrib tasks excluding one
+
+You can exclude tasks using the negate `!` globbing pattern:
+
+```js
+require('load-grunt-tasks')(grunt, {pattern: ['grunt-contrib-*', '!grunt-contrib-coffee']});
+```
+
+### Set custom path to package.json
+
+```js
+require('load-grunt-tasks')(grunt, {config: '../package'});
+```
+
+### Only load from `devDependencies`
+
+```js
+require('load-grunt-tasks')(grunt, {limit: 'devDependencies'});
+```
+
+### All options in use
+
+```js
+require('load-grunt-tasks')(grunt, {
+	pattern: 'grunt-contrib-*',
+	config: '../package.json',
+	limit: 'devDependencies'
+});
+```
+
+
+## Options
+
+### pattern
+
+Type: `String|Array`  
+Default: `'grunt-*'`
+
 By default `grunt-*` will be used as the [globbing pattern](https://github.com/isaacs/minimatch).
 
-You can optionally specify a pattern or an array of patterns:
+### config
 
-```js
-require('load-grunt-tasks')(grunt, 'grunt-shell');
-```
+Type: `String|Object`  
+Default: Path to nearest package.json
 
-```js
-require('load-grunt-tasks')(grunt, 'grunt-contrib-*');
-```
+### limit
 
-```js
-require('load-grunt-tasks')(grunt, ['grunt-contrib-*', 'grunt-shell']);
-```
+Type: `String`  
+Default: `undefined`
 
-You also have the option to specify the package.json as an object if it's not in the same folder as your Gruntfile:
-
-```js
-require('load-grunt-tasks')(grunt, 'grunt-shell', require('../package'));
-```
+By default tasks will be loaded from `dependencies`/`devDependencies`/`peerDependencies`. Specify either of these to only load from it.
 
 
 ## License
 
-MIT License • © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](http://sindresorhus.com)

@@ -1,30 +1,33 @@
 'use strict';
-var path = require('path');
-var minimatch = require('minimatch');
-var _ = require('lodash');
+var matchdep = require('matchdep');
 
-module.exports = function (grunt, patterns, pkg) {
-	if (patterns === undefined) {
-		patterns = 'grunt-*';
+module.exports = function (grunt, options) {
+	var fn = 'filterAll';
+	var pattern = options.pattern;
+	var config = options.config;
+	var limit = options.limit;
+
+	if (pattern === undefined) {
+		pattern = 'grunt-*';
 	}
 
-	if (typeof patterns === 'string') {
-		patterns = [patterns];
+	if (typeof pattern === 'string') {
+		pattern = [pattern];
 	}
 
-	if (typeof pkg !== 'object') {
-		pkg = require(path.resolve(process.cwd(), 'package.json'));
+	if (limit === 'dependencies') {
+		fn = 'filter';
 	}
 
-	if (!pkg.devDependencies) {
-		return;
+	if (limit === 'devDependencies') {
+		fn = 'filterDev';
 	}
 
-	var devDeps = Object.keys(pkg.devDependencies);
+	if (limit === 'peerDependencies') {
+		fn = 'filterPeer';
+	}
 
-	var tasks = patterns.map(function (pattern) {
-		return minimatch.match(devDeps, pattern, {});
-	});
+	pattern.push('!grunt', '!grunt-cli');
 
-	_(tasks).flatten().uniq().pull('grunt', 'grunt-cli').forEach(grunt.loadNpmTasks);
+	matchdep[fn](pattern, config).forEach(grunt.loadNpmTasks);
 };
