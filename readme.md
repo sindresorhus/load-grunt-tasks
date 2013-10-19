@@ -93,7 +93,13 @@ require('load-grunt-tasks')(grunt, {config: '../package'});
 ### Only load from `devDependencies`
 
 ```js
-require('load-grunt-tasks')(grunt, {limit: 'devDependencies'});
+require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
+```
+
+### Only load from `devDependencies` and `dependencies`
+
+```js
+require('load-grunt-tasks')(grunt, {scope: ['devDependencies', 'dependencies']});
 ```
 
 ### All options in use
@@ -102,7 +108,7 @@ require('load-grunt-tasks')(grunt, {limit: 'devDependencies'});
 require('load-grunt-tasks')(grunt, {
 	pattern: 'grunt-contrib-*',
 	config: '../package.json',
-	limit: 'devDependencies'
+	scope: 'devDependencies'
 });
 ```
 
@@ -121,12 +127,10 @@ By default `grunt-*` will be used as the [globbing pattern](https://github.com/i
 Type: `String|Object`  
 Default: Path to nearest package.json
 
-### limit
+### scope
 
-Type: `String`  
-Default: `undefined`
-
-By default tasks will be loaded from `dependencies`/`devDependencies`/`peerDependencies`. Specify either of these to only load from it.
+Type: `String|Array`  
+Default: `['dependencies', 'devDependencies', 'peerDependencies']`
 
 
 ## License

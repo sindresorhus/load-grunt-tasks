@@ -1,33 +1,27 @@
 'use strict';
-var matchdep = require('matchdep');
+var globule = require('globule');
+var findup = require('findup-sync');
+
+function arrayify(el) {
+	return Array.isArray(el) ? el : [el];
+}
 
 module.exports = function (grunt, options) {
-	var fn = 'filterAll';
-	var pattern = options.pattern;
-	var config = options.config;
-	var limit = options.limit;
+	options = options || {};
 
-	if (pattern === undefined) {
-		pattern = 'grunt-*';
-	}
+	var pattern = arrayify(options.pattern || ['grunt-*']);
+	var config = options.config || findup('package.json');
+	var scope = arrayify(options.scope || ['dependencies', 'devDependencies', 'peerDependencies']);
 
-	if (typeof pattern === 'string') {
-		pattern = [pattern];
-	}
-
-	if (limit === 'dependencies') {
-		fn = 'filter';
-	}
-
-	if (limit === 'devDependencies') {
-		fn = 'filterDev';
-	}
-
-	if (limit === 'peerDependencies') {
-		fn = 'filterPeer';
+	if (typeof config === 'string') {
+		config = require(config);
 	}
 
 	pattern.push('!grunt', '!grunt-cli');
 
-	matchdep[fn](pattern, config).forEach(grunt.loadNpmTasks);
+	var names = scope.reduce(function (result, prop) {
+		return result.concat(Object.keys(config[prop] || {}));
+	}, []);
+
+	globule.match(pattern, names).forEach(grunt.loadNpmTasks);
 };
