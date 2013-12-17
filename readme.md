@@ -1,4 +1,4 @@
-# load-grunt-tasks [![Build Status](https://secure.travis-ci.org/sindresorhus/load-grunt-tasks.png?branch=master)](http://travis-ci.org/sindresorhus/load-grunt-tasks)
+# load-grunt-tasks [![Build Status](https://secure.travis-ci.org/sindresorhus/load-grunt-tasks.png?branch=master)](http://travis-ci.org/sindresorhus/load-grunt-tasks) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 > Load multiple grunt tasks using globbing patterns
 
