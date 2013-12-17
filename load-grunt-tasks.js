@@ -1,6 +1,7 @@
 'use strict';
 var globule = require('globule');
 var findup = require('findup-sync');
+var path = require('path');
 
 function arrayify(el) {
 	return Array.isArray(el) ? el : [el];
@@ -14,7 +15,7 @@ module.exports = function (grunt, options) {
 	var scope = arrayify(options.scope || ['dependencies', 'devDependencies', 'peerDependencies']);
 
 	if (typeof config === 'string') {
-		config = require(config);
+		config = require(path.resolve(config));
 	}
 
 	pattern.push('!grunt', '!grunt-cli');
