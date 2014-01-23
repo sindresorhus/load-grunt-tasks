@@ -33,7 +33,7 @@
     "test": "grunt"
   },
   "dependencies": {
-    "globule": "~0.1.0",
+    "globule": "~0.2.0",
     "findup-sync": "~0.1.2"
   },
   "devDependencies": {
