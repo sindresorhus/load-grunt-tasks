@@ -4,7 +4,7 @@
 
 Usually you would have to load each task one by one, which is unnecessarily cumbersome.
 
-This module will read the `dependencies`/`devDependencies`/`peerDependencies` in your package.json and load grunt tasks that matches the provided patterns.
+This module will read the `dependencies`/`devDependencies`/`peerDependencies` in your package.json and load grunt tasks that match the provided patterns.
 
 **Note the new argument signature as of 0.2.0.**
 
@@ -118,9 +118,7 @@ require('load-grunt-tasks')(grunt, {
 ### pattern
 
 Type: `String|Array`  
-Default: `'grunt-*'`
-
-By default `grunt-*` will be used as the [globbing pattern](https://github.com/isaacs/minimatch).
+Default: `'grunt-*'` ([globbing pattern](https://github.com/isaacs/minimatch))
 
 ### config
 
