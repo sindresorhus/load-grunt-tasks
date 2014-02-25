@@ -1,7 +1,7 @@
 'use strict';
-var globule = require('globule');
-var findup = require('findup-sync');
 var path = require('path');
+var findup = require('findup-sync');
+var multimatch = require('multimatch');
 
 function arrayify(el) {
 	return Array.isArray(el) ? el : [el];
@@ -24,5 +24,5 @@ module.exports = function (grunt, options) {
 		return result.concat(Object.keys(config[prop] || {}));
 	}, []);
 
-	globule.match(pattern, names).forEach(grunt.loadNpmTasks);
+	multimatch(names, pattern).forEach(grunt.loadNpmTasks);
 };
