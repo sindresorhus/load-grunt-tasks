@@ -6,8 +6,6 @@ Usually you would have to load each task one by one, which is unnecessarily cumb
 
 This module will read the `dependencies`/`devDependencies`/`peerDependencies` in your package.json and load grunt tasks that match the provided patterns.
 
-**Note the new argument signature as of 0.2.0.**
-
 
 #### Before
 
@@ -33,7 +31,9 @@ require('load-grunt-tasks')(grunt);
 
 ## Install
 
-Install with [npm](https://npmjs.org/package/load-grunt-tasks): `npm install --save-dev load-grunt-tasks`
+```bash
+$ npm install --save-dev load-grunt-tasks
+```
 
 
 ## Example config
@@ -117,17 +117,17 @@ require('load-grunt-tasks')(grunt, {
 
 ### pattern
 
-Type: `String|Array`  
+Type: `String`, `Array`  
 Default: `'grunt-*'` ([globbing pattern](https://github.com/isaacs/minimatch))
 
 ### config
 
-Type: `String|Object`  
+Type: `String`, `Object`  
 Default: Path to nearest package.json
 
 ### scope
 
-Type: `String|Array`  
+Type: `String`, `Array`  
 Default: `['dependencies', 'devDependencies', 'peerDependencies']`
 
 
