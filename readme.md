@@ -31,12 +31,12 @@ require('load-grunt-tasks')(grunt);
 
 ## Install
 
-```bash
+```sh
 $ npm install --save-dev load-grunt-tasks
 ```
 
 
-## Example config
+## Usage
 
 ```js
 // Gruntfile.js
@@ -50,7 +50,7 @@ module.exports = function (grunt) {
 ```
 
 
-## Usage examples
+## Examples
 
 ### Load all grunt tasks
 
