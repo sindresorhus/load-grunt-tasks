@@ -1,6 +1,6 @@
 {
   "name": "load-grunt-tasks",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Load multiple grunt tasks using globbing patterns",
   "keywords": [
     "grunt",
