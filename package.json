@@ -20,21 +20,20 @@
     "url": "http://sindresorhus.com"
   },
   "files": [
-    "load-grunt-tasks.js"
+    "index.js"
   ],
-  "main": "load-grunt-tasks",
   "repository": "sindresorhus/load-grunt-tasks",
   "scripts": {
     "test": "grunt"
   },
   "dependencies": {
-    "findup-sync": "^0.1.2",
+    "findup-sync": "^0.2.1",
     "multimatch": "^2.0.0"
   },
   "devDependencies": {
     "grunt": "^0.4.2",
-    "grunt-cli": "^0.1.12",
-    "grunt-svgmin": "^1.0.0"
+    "grunt-cli": "^0.1.13",
+    "grunt-svgmin": "^2.0.0"
   },
   "engines": {
     "node": ">=0.10.0"
