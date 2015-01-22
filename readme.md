@@ -31,7 +31,7 @@ require('load-grunt-tasks')(grunt);
 
 ## Install
 
-```sh
+```
 $ npm install --save-dev load-grunt-tasks
 ```
 
@@ -117,20 +117,20 @@ require('load-grunt-tasks')(grunt, {
 
 ### pattern
 
-Type: `String`, `Array`  
+Type: `string`, `array`  
 Default: `['grunt-*', '@*/grunt-*']` ([globbing pattern](https://github.com/isaacs/minimatch))
 
 ### config
 
-Type: `String`, `Object`  
+Type: `string`, `object`  
 Default: Path to nearest package.json
 
 ### scope
 
-Type: `String`, `Array`  
+Type: `string`, `array`  
 Default: `['dependencies', 'devDependencies', 'peerDependencies']`
 
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT) © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](http://sindresorhus.com)

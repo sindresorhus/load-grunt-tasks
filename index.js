@@ -7,12 +7,12 @@ function arrayify(el) {
 	return Array.isArray(el) ? el : [el];
 }
 
-module.exports = function (grunt, options) {
-	options = options || {};
+module.exports = function (grunt, opts) {
+	opts = opts || {};
 
-	var config = options.config || findup('package.json');
-	var scope = arrayify(options.scope || ['dependencies', 'devDependencies', 'peerDependencies']);
 	var pattern = arrayify(opts.pattern || ['grunt-*', '@*/grunt-*']);
+	var config = opts.config || findup('package.json');
+	var scope = arrayify(opts.scope || ['dependencies', 'devDependencies', 'peerDependencies']);
 
 	if (typeof config === 'string') {
 		config = require(path.resolve(config));
