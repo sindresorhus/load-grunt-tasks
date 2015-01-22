@@ -41,7 +41,7 @@ $ npm install --save-dev load-grunt-tasks
 ```js
 // Gruntfile.js
 module.exports = function (grunt) {
-	// load all grunt tasks matching the `grunt-*` pattern
+	// load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns
 	require('load-grunt-tasks')(grunt);
 
 	grunt.initConfig({});
@@ -61,7 +61,7 @@ require('load-grunt-tasks')(grunt);
 Equivalent to:
 
 ```js
-require('load-grunt-tasks')(grunt, {pattern: 'grunt-*'});
+require('load-grunt-tasks')(grunt, {pattern: ['grunt-*', '@*/grunt-*']});
 ```
 
 ### Load all grunt-contrib tasks
@@ -118,7 +118,7 @@ require('load-grunt-tasks')(grunt, {
 ### pattern
 
 Type: `String`, `Array`  
-Default: `'grunt-*'` ([globbing pattern](https://github.com/isaacs/minimatch))
+Default: `['grunt-*', '@*/grunt-*']` ([globbing pattern](https://github.com/isaacs/minimatch))
 
 ### config
 
