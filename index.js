@@ -10,7 +10,7 @@ function arrayify(el) {
 module.exports = function (grunt, options) {
 	options = options || {};
 
-	var pattern = arrayify(options.pattern || ['grunt-*']);
+	var pattern = arrayify(options.pattern || ['grunt-*', '@*/grunt-*']);
 	var config = options.config || findup('package.json');
 	var scope = arrayify(options.scope || ['dependencies', 'devDependencies', 'peerDependencies']);
 
@@ -18,7 +18,7 @@ module.exports = function (grunt, options) {
 		config = require(path.resolve(config));
 	}
 
-	pattern.push('!grunt', '!grunt-cli');
+	pattern.push('!grunt', '!grunt-cli', '!@*/grunt-cli');
 
 	var names = scope.reduce(function (result, prop) {
 		return result.concat(Object.keys(config[prop] || {}));
