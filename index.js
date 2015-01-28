@@ -22,7 +22,7 @@ module.exports = function (grunt, opts) {
 
 	var names = scope.reduce(function (result, prop) {
 		var scopeNames = config[prop] || [];
-		scopeNames = Array.isArray(scopeNames) ? scopeNames : Object.keys(config[prop]);
+		scopeNames = Array.isArray(scopeNames) ? scopeNames : Object.keys(scopeNames);
 		return result.concat(scopeNames);
 	}, []);
 
