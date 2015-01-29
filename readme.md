@@ -128,7 +128,8 @@ Default: Path to nearest package.json
 ### scope
 
 Type: `string`, `array`  
-Default: `['dependencies', 'devDependencies', 'peerDependencies']`
+Default: `['dependencies', 'devDependencies', 'peerDependencies']`  
+Values: `'dependencies'`, `'devDependencies'`, `'peerDependencies'`, `'bundledDependencies'`
 
 
 ## License

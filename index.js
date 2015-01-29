@@ -21,9 +21,8 @@ module.exports = function (grunt, opts) {
 	pattern.push('!grunt', '!grunt-cli');
 
 	var names = scope.reduce(function (result, prop) {
-		var scopeNames = config[prop] || [];
-		scopeNames = Array.isArray(scopeNames) ? scopeNames : Object.keys(scopeNames);
-		return result.concat(scopeNames);
+		var deps = config[prop] || [];
+		return result.concat(Array.isArray(deps) ? deps : Object.keys(deps));
 	}, []);
 
 	multimatch(names, pattern).forEach(grunt.loadNpmTasks);
