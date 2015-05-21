@@ -12,7 +12,7 @@ module.exports = function (grunt, opts) {
 
 	var pattern = arrayify(opts.pattern || ['grunt-*', '@*/grunt-*']);
 	var config = opts.config || findup('package.json');
-	var scope = arrayify(opts.scope || ['dependencies', 'devDependencies', 'peerDependencies']);
+	var scope = arrayify(opts.scope || ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']);
 
 	if (typeof config === 'string') {
 		config = require(path.resolve(config));
