@@ -4,7 +4,7 @@
 
 Usually you would have to load each task one by one, which is unnecessarily cumbersome.
 
-This module will read the `dependencies`/`devDependencies`/`peerDependencies` in your package.json and load grunt tasks that match the provided patterns.
+This module will read the `dependencies`/`devDependencies`/`peerDependencies`/`optionalDependencies` in your package.json and load grunt tasks that match the provided patterns.
 
 
 #### Before
@@ -128,8 +128,8 @@ Default: Path to nearest package.json
 ### scope
 
 Type: `string`, `array`  
-Default: `['dependencies', 'devDependencies', 'peerDependencies']`  
-Values: `'dependencies'`, `'devDependencies'`, `'peerDependencies'`, `'bundledDependencies'`
+Default: `['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']`  
+Values: `'dependencies'`, `'devDependencies'`, `'peerDependencies'`, `'optionalDependencies'`, `'bundledDependencies'`
 
 
 ## License
