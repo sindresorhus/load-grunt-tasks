@@ -3,15 +3,15 @@
   "version": "3.2.0",
   "description": "Load multiple grunt tasks using globbing patterns",
   "keywords": [
+    "dependencies",
+    "glob",
     "grunt",
     "load",
-    "require",
-    "tasks",
-    "glob",
-    "pattern",
     "match",
     "matchdep",
-    "dependencies"
+    "pattern",
+    "require",
+    "tasks"
   ],
   "license": "MIT",
   "author": {
@@ -27,6 +27,7 @@
     "test": "grunt"
   },
   "dependencies": {
+    "arrify": "^1.0.0",
     "findup-sync": "^0.2.1",
     "multimatch": "^2.0.0"
   },
