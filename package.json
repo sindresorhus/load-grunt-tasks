@@ -24,7 +24,7 @@
   ],
   "repository": "sindresorhus/load-grunt-tasks",
   "scripts": {
-    "test": "grunt"
+    "test": "xo && grunt"
   },
   "dependencies": {
     "arrify": "^1.0.0",
@@ -34,7 +34,8 @@
   "devDependencies": {
     "grunt": "^0.4.2",
     "grunt-cli": "^0.1.13",
-    "grunt-svgmin": "^2.0.0"
+    "grunt-svgmin": "^2.0.0",
+    "xo": "*"
   },
   "engines": {
     "node": ">=0.10.0"
