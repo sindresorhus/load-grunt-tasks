@@ -1,6 +1,6 @@
 'use strict';
 var path = require('path');
-var findup = require('findup-sync');
+var pkgUp = require('pkg-up');
 var multimatch = require('multimatch');
 var arrify = require('arrify');
 
@@ -8,7 +8,7 @@ module.exports = function (grunt, opts) {
 	opts = opts || {};
 
 	var pattern = arrify(opts.pattern || ['grunt-*', '@*/grunt-*']);
-	var config = opts.config || findup('package.json');
+	var config = opts.config || pkgUp.sync();
 	var scope = arrify(opts.scope || ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']);
 
 	if (typeof config === 'string') {

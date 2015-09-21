@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "arrify": "^1.0.0",
-    "findup-sync": "^0.2.1",
-    "multimatch": "^2.0.0"
+    "multimatch": "^2.0.0",
+    "pkg-up": "^1.0.0"
   },
   "devDependencies": {
     "grunt": "^0.4.2",
