@@ -29,7 +29,8 @@
   "dependencies": {
     "arrify": "^1.0.0",
     "multimatch": "^2.0.0",
-    "pkg-up": "^1.0.0"
+    "pkg-up": "^1.0.0",
+    "require-resolve": "0.0.2"
   },
   "devDependencies": {
     "grunt": "^0.4.2",
