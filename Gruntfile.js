@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function (grunt) {
 	require('./')(grunt, {
-		pattern: ['*'],
+		pattern: ['grunt*'],
 		config: require('./package'),
 		scope: 'devDependencies'
 	});
