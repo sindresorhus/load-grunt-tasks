@@ -119,22 +119,23 @@ require('load-grunt-tasks')(grunt, {
 });
 ```
 
+
 ## Options
 
 ### pattern
 
-Type: `string`, `array`
+Type: `string`, `array`  
 Default: `['grunt-*', '@*/grunt-*']` ([globbing pattern](https://github.com/isaacs/minimatch))
 
 ### config
 
-Type: `string`, `object`
+Type: `string`, `object`  
 Default: Path to nearest package.json
 
 ### scope
 
-Type: `string`, `array`
-Default: `['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']`
+Type: `string`, `array`  
+Default: `['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']`  
 Values: `'dependencies'`, `'devDependencies'`, `'peerDependencies'`, `'optionalDependencies'`, `'bundledDependencies'`
 
 ### requireResolution
