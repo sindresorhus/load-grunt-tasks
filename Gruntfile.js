@@ -3,7 +3,8 @@ module.exports = function (grunt) {
 	require('./')(grunt, {
 		pattern: ['grunt*'],
 		config: require('./package'),
-		scope: 'devDependencies'
+		scope: 'devDependencies',
+		requireResolution: true
 	});
 
 	grunt.initConfig({

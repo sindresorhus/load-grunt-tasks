@@ -105,7 +105,7 @@ require('load-grunt-tasks')(grunt, {scope: ['devDependencies', 'dependencies']})
 ### Only load from `node_modules` in the current working directory
 
 ```js
-require('load-grunt-tasks')(grunt, {nodeModulesResolution: false});
+require('load-grunt-tasks')(grunt, {requireResolution: false});
 ```
 
 ### All options in use
@@ -115,7 +115,7 @@ require('load-grunt-tasks')(grunt, {
 	pattern: 'grunt-contrib-*',
 	config: '../package.json',
 	scope: 'devDependencies',
-  nodeModulesResolution: true
+	requireResolution: true
 });
 ```
 
@@ -137,11 +137,10 @@ Type: `string`, `array`
 Default: `['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']`
 Values: `'dependencies'`, `'devDependencies'`, `'peerDependencies'`, `'optionalDependencies'`, `'bundledDependencies'`
 
-### nodeModulesResolution
+### requireResolution
 
 Type: `boolean`
-Default: `true`
-Values: `true`, `false`
+Default: `false`
 
 ## License
 

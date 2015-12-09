@@ -3,7 +3,7 @@ var path = require('path');
 var pkgUp = require('pkg-up');
 var multimatch = require('multimatch');
 var arrify = require('arrify');
-var resolveFrom = require('resolve-from');
+var resolveCwd = require('resolve-cwd');
 
 module.exports = function (grunt, opts) {
 	opts = opts || {};
@@ -16,8 +16,8 @@ module.exports = function (grunt, opts) {
 		config = require(path.resolve(config));
 	}
 
-	if (config.nodeModulesResolution === undefined) {
-		config.nodeModulesResolution = true;
+	if (opts.requireResolution === undefined) {
+		opts.requireResolution = false;
 	}
 
 	pattern.push('!grunt', '!grunt-cli');
@@ -27,15 +27,16 @@ module.exports = function (grunt, opts) {
 		return result.concat(Array.isArray(deps) ? deps : Object.keys(deps));
 	}, []);
 
-	var resolver = resolveFrom.bind(null, process.cwd());
-
 	multimatch(names, pattern).forEach(function (pkgName) {
-		if (config.nodeModulesResolution) {
-			var resolved = resolver(path.join(pkgName, 'package.json'));
-			var tasksDir = path.join(path.dirname(resolved), 'tasks');
-			grunt.loadTasks(tasksDir);
-		} else {
-			grunt.loadTasks(pkgName);
+		if (opts.requireResolution) {
+			// This resolution is complicated because most grunt plugins are written
+			// in violation of package.json conventions. And example is not having a
+			// `main` field defined, which will cause `require` or `resolve`
+			// to fail. So better to lookup a guaranteed file, such as package.json.
+			var pkg = resolveCwd(path.join(pkgName, 'package.json'));
+			var root = path.dirname(pkg);
+			pkgName = path.join(root, 'tasks');
 		}
+		grunt.loadTasks(pkgName);
 	});
 };
