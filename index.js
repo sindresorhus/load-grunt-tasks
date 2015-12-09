@@ -3,7 +3,7 @@ var path = require('path');
 var pkgUp = require('pkg-up');
 var multimatch = require('multimatch');
 var arrify = require('arrify');
-var resolve = require('require-resolve');
+var resolveFrom = require('resolve-from');
 
 module.exports = function (grunt, opts) {
 	opts = opts || {};
@@ -16,6 +16,10 @@ module.exports = function (grunt, opts) {
 		config = require(path.resolve(config));
 	}
 
+	if (config.nodeModulesResolution === undefined) {
+		config.nodeModulesResolution = true;
+	}
+
 	pattern.push('!grunt', '!grunt-cli');
 
 	var names = scope.reduce(function (result, prop) {
@@ -23,8 +27,15 @@ module.exports = function (grunt, opts) {
 		return result.concat(Array.isArray(deps) ? deps : Object.keys(deps));
 	}, []);
 
+	var resolver = resolveFrom.bind(null, process.cwd());
+
 	multimatch(names, pattern).forEach(function (pkgName) {
-		var resolved = resolve(path.join(pkgName, 'package.json'));
-		grunt.loadTasks(path.join(resolved.pkg.root, 'tasks'));
+		if (config.nodeModulesResolution) {
+			var resolved = resolver(path.join(pkgName, 'package.json'));
+			var tasksDir = path.join(path.dirname(resolved), 'tasks');
+			grunt.loadTasks(tasksDir);
+		} else {
+			grunt.loadTasks(pkgName);
+		}
 	});
 };
