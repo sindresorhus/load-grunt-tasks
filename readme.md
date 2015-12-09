@@ -4,7 +4,7 @@
 
 Usually you would have to load each task one by one, which is unnecessarily cumbersome.
 
-This module will read the `dependencies`/`devDependencies`/`peerDependencies`/`optionalDependencies` in your package.json and load grunt tasks that match the provided patterns.
+This module will read the `dependencies`/`devDependencies`/`peerDependencies`/`optionalDependencies` in your package.json and load grunt tasks that match the provided patterns. It will also traverse the file hierarchy, just like node does when requiring modules (can be disabled).
 
 
 #### Before
@@ -102,35 +102,46 @@ require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
 require('load-grunt-tasks')(grunt, {scope: ['devDependencies', 'dependencies']});
 ```
 
+### Only load from `node_modules` in the current working directory
+
+```js
+require('load-grunt-tasks')(grunt, {nodeModulesResolution: false});
+```
+
 ### All options in use
 
 ```js
 require('load-grunt-tasks')(grunt, {
 	pattern: 'grunt-contrib-*',
 	config: '../package.json',
-	scope: 'devDependencies'
+	scope: 'devDependencies',
+  nodeModulesResolution: true
 });
 ```
-
 
 ## Options
 
 ### pattern
 
-Type: `string`, `array`  
+Type: `string`, `array`
 Default: `['grunt-*', '@*/grunt-*']` ([globbing pattern](https://github.com/isaacs/minimatch))
 
 ### config
 
-Type: `string`, `object`  
+Type: `string`, `object`
 Default: Path to nearest package.json
 
 ### scope
 
-Type: `string`, `array`  
-Default: `['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']`  
+Type: `string`, `array`
+Default: `['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']`
 Values: `'dependencies'`, `'devDependencies'`, `'peerDependencies'`, `'optionalDependencies'`, `'bundledDependencies'`
 
+### nodeModulesResolution
+
+Type: `boolean`
+Default: `true`
+Values: `true`, `false`
 
 ## License
 
