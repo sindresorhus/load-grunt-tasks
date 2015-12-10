@@ -16,10 +16,6 @@ module.exports = function (grunt, opts) {
 		config = require(path.resolve(config));
 	}
 
-	if (opts.requireResolution === undefined) {
-		opts.requireResolution = false;
-	}
-
 	pattern.push('!grunt', '!grunt-cli');
 
 	var names = scope.reduce(function (result, prop) {
@@ -28,7 +24,7 @@ module.exports = function (grunt, opts) {
 	}, []);
 
 	multimatch(names, pattern).forEach(function (pkgName) {
-		if (opts.requireResolution) {
+		if (opts.requireResolution === true) {
 			// This resolution is complicated because most grunt plugins are written
 			// in violation of package.json conventions. And example is not having a
 			// `main` field defined, which will cause `require` or `resolve`
@@ -37,6 +33,7 @@ module.exports = function (grunt, opts) {
 			var root = path.dirname(pkg);
 			pkgName = path.join(root, 'tasks');
 		}
+
 		grunt.loadTasks(pkgName);
 	});
 };
