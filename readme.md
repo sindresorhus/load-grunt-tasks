@@ -6,7 +6,6 @@ Usually you would have to load each task one by one, which is unnecessarily cumb
 
 This module will read the `dependencies`/`devDependencies`/`peerDependencies`/`optionalDependencies` in your package.json and load grunt tasks that match the provided patterns.
 
-
 #### Before
 
 ```js
@@ -102,13 +101,20 @@ require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
 require('load-grunt-tasks')(grunt, {scope: ['devDependencies', 'dependencies']});
 ```
 
+### Load from all `node_modules` in the current hierarchy
+
+```js
+require('load-grunt-tasks')(grunt, {requireResolution: true});
+```
+
 ### All options in use
 
 ```js
 require('load-grunt-tasks')(grunt, {
 	pattern: 'grunt-contrib-*',
 	config: '../package.json',
-	scope: 'devDependencies'
+	scope: 'devDependencies',
+	requireResolution: false
 });
 ```
 
@@ -131,6 +137,12 @@ Type: `string`, `array`
 Default: `['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']`  
 Values: `'dependencies'`, `'devDependencies'`, `'peerDependencies'`, `'optionalDependencies'`, `'bundledDependencies'`
 
+### requireResolution
+
+Traverse the file hierarchy, just like node does when requiring modules.
+
+Type: `boolean`
+Default: `false`
 
 ## License
 
