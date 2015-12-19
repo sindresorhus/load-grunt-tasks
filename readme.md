@@ -39,7 +39,7 @@ $ npm install --save-dev load-grunt-tasks
 
 ```js
 // Gruntfile.js
-module.exports = function (grunt) {
+module.exports = grunt => {
 	// load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns
 	require('load-grunt-tasks')(grunt);
 
@@ -101,12 +101,6 @@ require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
 require('load-grunt-tasks')(grunt, {scope: ['devDependencies', 'dependencies']});
 ```
 
-### Load from all `node_modules` in the current hierarchy
-
-```js
-require('load-grunt-tasks')(grunt, {requireResolution: true});
-```
-
 ### All options in use
 
 ```js
@@ -114,7 +108,7 @@ require('load-grunt-tasks')(grunt, {
 	pattern: 'grunt-contrib-*',
 	config: '../package.json',
 	scope: 'devDependencies',
-	requireResolution: false
+	requireResolution: true
 });
 ```
 
@@ -139,10 +133,11 @@ Values: `'dependencies'`, `'devDependencies'`, `'peerDependencies'`, `'optionalD
 
 ### requireResolution
 
-Traverse the file hierarchy, just like node does when requiring modules.
-
-Type: `boolean`
+Type: `boolean`  
 Default: `false`
+
+Traverse up the file hierarchy looking for dependencies like `require()`, rather than the default grunt-like behavior of loading tasks only in the immediate `node_modules` directory.
+
 
 ## License
 
