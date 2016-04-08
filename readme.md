@@ -117,23 +117,23 @@ require('load-grunt-tasks')(grunt, {
 
 ### pattern
 
-Type: `string`, `array`  
+Type: `string`, `array`<br>
 Default: `['grunt-*', '@*/grunt-*']` ([globbing pattern](https://github.com/isaacs/minimatch))
 
 ### config
 
-Type: `string`, `object`  
+Type: `string`, `object`<br>
 Default: Path to nearest package.json
 
 ### scope
 
-Type: `string`, `array`  
-Default: `['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']`  
+Type: `string`, `array`<br>
+Default: `['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']`<br>
 Values: `'dependencies'`, `'devDependencies'`, `'peerDependencies'`, `'optionalDependencies'`, `'bundledDependencies'`
 
 ### requireResolution
 
-Type: `boolean`  
+Type: `boolean`<br>
 Default: `false`
 
 Traverse up the file hierarchy looking for dependencies like `require()`, rather than the default grunt-like behavior of loading tasks only in the immediate `node_modules` directory.
@@ -141,4 +141,4 @@ Traverse up the file hierarchy looking for dependencies like `require()`, rather
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)
