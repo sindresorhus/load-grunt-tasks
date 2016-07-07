@@ -10,7 +10,10 @@ module.exports = function (grunt, opts) {
 
 	var pattern = arrify(opts.pattern || ['grunt-*', '@*/grunt-*']);
 	var config = opts.config || pkgUp.sync();
+
 	var scope = arrify(opts.scope || ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']);
+
+        var dir_name = (typeof config !== 'string') ? __dirname : path.dirname(path.resolve(config));
 
 	if (typeof config === 'string') {
 		config = require(path.resolve(config));
@@ -26,7 +29,7 @@ module.exports = function (grunt, opts) {
 	multimatch(names, pattern).forEach(function (pkgName) {
 		if (opts.requireResolution === true) {
 			try {
-				grunt.loadTasks(resolvePkg(path.join(pkgName, 'tasks')));
+				grunt.loadTasks(resolvePkg(path.join(pkgName, 'tasks'), { cwd: dir_name }));
 			} catch (err) {
 				grunt.log.error('npm package "' + pkgName + '" not found. Is it installed?');
 			}
