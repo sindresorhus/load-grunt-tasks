@@ -2,6 +2,12 @@
 
 > Load multiple grunt tasks using globbing patterns
 
+---
+
+<p align="center"><b>🔥 Want to strengthen your core JavaScript skills and master ES6?</b><br>I would personally recommend this awesome <a href="https://ES6.io/friend/AWESOME">ES6 course</a> by Wes Bos.</p>
+
+---
+
 Usually you would have to load each task one by one, which is unnecessarily cumbersome.
 
 This module will read the `dependencies`/`devDependencies`/`peerDependencies`/`optionalDependencies` in your package.json and load grunt tasks that match the provided patterns.
