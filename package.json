@@ -1,6 +1,6 @@
 {
   "name": "load-grunt-tasks",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "description": "Load multiple grunt tasks using globbing patterns",
   "keywords": [
     "dependencies",
