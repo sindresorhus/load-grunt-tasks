@@ -7,6 +7,7 @@ var resolvePkg = require('resolve-pkg');
 
 module.exports = function (grunt, opts) {
 	opts = opts || {};
+	opts.cwd = opts.cwd || '.';
 
 	var pattern = arrify(opts.pattern || ['grunt-*', '@*/grunt-*']);
 	var config = opts.config || pkgUp.sync();
@@ -26,7 +27,7 @@ module.exports = function (grunt, opts) {
 	multimatch(names, pattern).forEach(function (pkgName) {
 		if (opts.requireResolution === true) {
 			try {
-				grunt.loadTasks(resolvePkg(path.join(pkgName, 'tasks')));
+				grunt.loadTasks(resolvePkg(path.join(pkgName, 'tasks'), opts)));
 			} catch (err) {
 				grunt.log.error('npm package "' + pkgName + '" not found. Is it installed?');
 			}
