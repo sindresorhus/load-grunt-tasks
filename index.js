@@ -13,7 +13,7 @@ module.exports = function (grunt, opts) {
 
 	var scope = arrify(opts.scope || ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']);
 
-	var dirName = (typeof config === 'string') ? path.dirname(path.resolve(config)) : __dirname;
+	var dirName = (typeof config === 'string') ? path.dirname(path.resolve(config)) : process.cwd();
 
 	if (typeof config === 'string') {
 		config = require(path.resolve(config));
