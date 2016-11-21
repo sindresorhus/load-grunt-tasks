@@ -26,7 +26,7 @@ module.exports = function (grunt, opts) {
 	multimatch(names, pattern).forEach(function (pkgName) {
 		if (opts.requireResolution === true) {
 			try {
-				grunt.loadTasks(resolvePkg(path.join(pkgName, 'tasks')));
+				grunt.loadTasks(resolvePkg(path.join(pkgName, 'tasks'), { cwd: opts.requireResolutionCwd }));
 			} catch (err) {
 				grunt.log.error('npm package "' + pkgName + '" not found. Is it installed?');
 			}
