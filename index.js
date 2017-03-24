@@ -1,37 +1,38 @@
 'use strict';
 var path = require('path');
-var pkgUp = require('pkg-up');
+var findup = require('findup-sync');
 var multimatch = require('multimatch');
-var arrify = require('arrify');
-var resolvePkg = require('resolve-pkg');
 
-module.exports = function (grunt, opts) {
-	opts = opts || {};
+function arrayify(el) {
+  return Array.isArray(el) ? el : [el];
+}
 
-	var pattern = arrify(opts.pattern || ['grunt-*', '@*/grunt-*']);
-	var config = opts.config || pkgUp.sync();
-	var scope = arrify(opts.scope || ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']);
+module.exports = function (grunt, options) {
+  options = options || {};
 
-	if (typeof config === 'string') {
-		config = require(path.resolve(config));
-	}
+  var pattern = arrayify(options.pattern || ['grunt-*']);
+  var config = options.config || findup('package.json');
+  var scope = arrayify(options.scope || ['dependencies', 'devDependencies', 'peerDependencies']);
+  var modules = options.modules || 'node_modules'
 
-	pattern.push('!grunt', '!grunt-cli');
+  if (typeof config === 'string') {
+    config = require(path.resolve(config));
+  }
 
-	var names = scope.reduce(function (result, prop) {
-		var deps = config[prop] || [];
-		return result.concat(Array.isArray(deps) ? deps : Object.keys(deps));
-	}, []);
+  console.log(path.resolve(options.modules))
 
-	multimatch(names, pattern).forEach(function (pkgName) {
-		if (opts.requireResolution === true) {
-			try {
-				grunt.loadTasks(resolvePkg(path.join(pkgName, 'tasks')));
-			} catch (err) {
-				grunt.log.error('npm package "' + pkgName + '" not found. Is it installed?');
-			}
-		} else {
-			grunt.loadNpmTasks(pkgName);
-		}
-	});
+  pattern.push('!grunt', '!grunt-cli');
+
+  var names = scope.reduce(function (result, prop) {
+    return result.concat(Object.keys(config[prop] || {}));
+  }, []);
+
+  if(options.modules){
+    multimatch(names, pattern).forEach(function(task){
+      grunt.loadTasks(path.resolve(modules)+'/'+task+'/tasks')
+    });
+
+  } else {
+    multimatch(names, pattern).forEach(grunt.loadNpmTasks);
+  }
 };
