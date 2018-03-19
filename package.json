@@ -1,5 +1,5 @@
 {
-  "name": "load-grunt-tasks",
+  "name": "@lahautesociete/load-grunt-tasks",
   "version": "3.5.3",
   "description": "Load multiple grunt tasks using globbing patterns",
   "keywords": [
@@ -22,7 +22,7 @@
   "files": [
     "index.js"
   ],
-  "repository": "sindresorhus/load-grunt-tasks",
+  "repository": "la-haute-societe/load-grunt-tasks",
   "scripts": {
     "test": "xo && grunt"
   },
