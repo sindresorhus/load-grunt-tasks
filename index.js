@@ -1,16 +1,14 @@
 'use strict';
-var path = require('path');
-var pkgUp = require('pkg-up');
-var multimatch = require('multimatch');
-var arrify = require('arrify');
-var resolvePkg = require('resolve-pkg');
+const path = require('path');
+const pkgUp = require('pkg-up');
+const multimatch = require('multimatch');
+const arrify = require('arrify');
+const resolvePkg = require('resolve-pkg');
 
-module.exports = function (grunt, opts) {
-	opts = opts || {};
-
-	var pattern = arrify(opts.pattern || ['grunt-*', '@*/grunt-*']);
-	var config = opts.config || pkgUp.sync();
-	var scope = arrify(opts.scope || ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']);
+module.exports = (grunt, options = {}) => {
+	const pattern = arrify(options.pattern || ['grunt-*', '@*/grunt-*']);
+	const scope = arrify(options.scope || ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']);
+	let config = options.config || pkgUp.sync();
 
 	if (typeof config === 'string') {
 		config = require(path.resolve(config));
@@ -18,20 +16,20 @@ module.exports = function (grunt, opts) {
 
 	pattern.push('!grunt', '!grunt-cli');
 
-	var names = scope.reduce(function (result, prop) {
-		var deps = config[prop] || [];
+	const names = scope.reduce((result, prop) => {
+		const deps = config[prop] || [];
 		return result.concat(Array.isArray(deps) ? deps : Object.keys(deps));
 	}, []);
 
-	multimatch(names, pattern).forEach(function (pkgName) {
-		if (opts.requireResolution === true) {
+	for (const packageName of multimatch(names, pattern)) {
+		if (options.requireResolution === true) {
 			try {
-				grunt.loadTasks(resolvePkg(path.join(pkgName, 'tasks')));
+				grunt.loadTasks(resolvePkg(path.join(packageName, 'tasks')));
 			} catch (err) {
-				grunt.log.error('npm package "' + pkgName + '" not found. Is it installed?');
+				grunt.log.error(`npm package \`${packageName}\` not found. Is it installed?`);
 			}
 		} else {
-			grunt.loadNpmTasks(pkgName);
+			grunt.loadNpmTasks(packageName);
 		}
-	});
+	}
 };

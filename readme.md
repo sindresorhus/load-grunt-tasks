@@ -40,13 +40,17 @@ require('load-grunt-tasks')(grunt);
 $ npm install --save-dev load-grunt-tasks
 ```
 
+<a href="https://www.patreon.com/sindresorhus">
+	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
+
 
 ## Usage
 
 ```js
 // Gruntfile.js
 module.exports = grunt => {
-	// load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns
+	// Load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns
 	require('load-grunt-tasks')(grunt);
 
 	grunt.initConfig({});
@@ -123,17 +127,17 @@ require('load-grunt-tasks')(grunt, {
 
 ### pattern
 
-Type: `string`, `array`<br>
+Type: `string`, `Array`<br>
 Default: `['grunt-*', '@*/grunt-*']` ([globbing pattern](https://github.com/isaacs/minimatch))
 
 ### config
 
-Type: `string`, `object`<br>
+Type: `string`, `Object`<br>
 Default: Path to nearest package.json
 
 ### scope
 
-Type: `string`, `array`<br>
+Type: `string`, `Array`<br>
 Default: `['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']`<br>
 Values: `'dependencies'`, `'devDependencies'`, `'peerDependencies'`, `'optionalDependencies'`, `'bundledDependencies'`
 

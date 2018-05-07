@@ -1,6 +1,6 @@
 'use strict';
-module.exports = function (grunt) {
-	require('./')(grunt, {
+module.exports = grunt => {
+	require('.')(grunt, {
 		pattern: ['grunt*'],
 		config: require('./package'),
 		scope: 'devDependencies',
