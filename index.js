@@ -8,10 +8,13 @@ const resolvePkg = require('resolve-pkg');
 module.exports = (grunt, options = {}) => {
 	const pattern = arrify(options.pattern || ['grunt-*', '@*/grunt-*']);
 	const scope = arrify(options.scope || ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']);
-	let config = options.config || pkgUp.sync();
 
+	let cwd = process.cwd();
+	let config = options.config || pkgUp.sync();
 	if (typeof config === 'string') {
-		config = require(path.resolve(config));
+		const configPath = path.resolve(config);
+		cwd = path.dirname(configPath);
+		config = require(configPath);
 	}
 
 	pattern.push('!grunt', '!grunt-cli');
@@ -24,7 +27,7 @@ module.exports = (grunt, options = {}) => {
 	for (const packageName of multimatch(names, pattern)) {
 		if (options.requireResolution === true) {
 			try {
-				grunt.loadTasks(resolvePkg(path.join(packageName, 'tasks')));
+				grunt.loadTasks(resolvePkg(path.join(packageName, 'tasks'), {cwd}));
 			} catch (err) {
 				grunt.log.error(`npm package \`${packageName}\` not found. Is it installed?`);
 			}
