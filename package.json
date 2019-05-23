@@ -1,6 +1,6 @@
 {
 	"name": "load-grunt-tasks",
-	"version": "4.0.0",
+	"version": "5.0.0",
 	"description": "Load multiple grunt tasks using globbing patterns",
 	"license": "MIT",
 	"repository": "sindresorhus/load-grunt-tasks",
