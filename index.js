@@ -19,16 +19,16 @@ module.exports = (grunt, options = {}) => {
 
 	pattern.push('!grunt', '!grunt-cli');
 
-	const names = scope.reduce((result, prop) => {
-		const deps = config[prop] || [];
-		return result.concat(Array.isArray(deps) ? deps : Object.keys(deps));
+	const names = scope.reduce((result, property) => {
+		const dependencies = config[property] || [];
+		return result.concat(Array.isArray(dependencies) ? dependencies : Object.keys(dependencies));
 	}, []);
 
 	for (const packageName of multimatch(names, pattern)) {
 		if (options.requireResolution === true) {
 			try {
 				grunt.loadTasks(resolvePkg(path.join(packageName, 'tasks'), {cwd}));
-			} catch (err) {
+			} catch (_) {
 				grunt.log.error(`npm package \`${packageName}\` not found. Is it installed?`);
 			}
 		} else {

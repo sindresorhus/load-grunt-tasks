@@ -10,7 +10,7 @@
 		"url": "sindresorhus.com"
 	},
 	"engines": {
-		"node": ">=6"
+		"node": ">=8"
 	},
 	"scripts": {
 		"test": "xo && grunt"
@@ -30,16 +30,16 @@
 		"tasks"
 	],
 	"dependencies": {
-		"arrify": "^1.0.0",
-		"multimatch": "^2.0.0",
-		"pkg-up": "^2.0.0",
-		"resolve-pkg": "^1.0.0"
+		"arrify": "^2.0.1",
+		"multimatch": "^4.0.0",
+		"pkg-up": "^3.1.0",
+		"resolve-pkg": "^2.0.0"
 	},
 	"devDependencies": {
 		"grunt": "^1.0.1",
 		"grunt-cli": "^1.2.0",
-		"grunt-svgmin": "^5.0.0",
-		"xo": "*"
+		"grunt-svgmin": "^6.0.0",
+		"xo": "^0.24.0"
 	},
 	"peerDependencies": {
 		"grunt": ">=1"
