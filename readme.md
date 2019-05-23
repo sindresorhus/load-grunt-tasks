@@ -2,12 +2,6 @@
 
 > Load multiple grunt tasks using globbing patterns
 
----
-
-<p align="center"><b>🔥 Want to strengthen your core JavaScript skills and master ES6?</b><br>I would personally recommend this awesome <a href="https://ES6.io/friend/AWESOME">ES6 course</a> by Wes Bos.</p>
-
----
-
 Usually you would have to load each task one by one, which is unnecessarily cumbersome.
 
 This module will read the `dependencies`/`devDependencies`/`peerDependencies`/`optionalDependencies` in your package.json and load grunt tasks that match the provided patterns.
@@ -39,10 +33,6 @@ require('load-grunt-tasks')(grunt);
 ```
 $ npm install --save-dev load-grunt-tasks
 ```
-
-<a href="https://www.patreon.com/sindresorhus">
-	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
 
 
 ## Usage
@@ -127,17 +117,17 @@ require('load-grunt-tasks')(grunt, {
 
 ### pattern
 
-Type: `string`, `Array`<br>
-Default: `['grunt-*', '@*/grunt-*']` ([globbing pattern](https://github.com/isaacs/minimatch))
+Type: `string | string[]`<br>
+Default: `['grunt-*', '@*/grunt-*']` ([Glob pattern](https://github.com/isaacs/minimatch))
 
 ### config
 
-Type: `string`, `Object`<br>
+Type: `string | object`<br>
 Default: Path to nearest package.json
 
 ### scope
 
-Type: `string`, `Array`<br>
+Type: `string | string[]`<br>
 Default: `['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']`<br>
 Values: `'dependencies'`, `'devDependencies'`, `'peerDependencies'`, `'optionalDependencies'`, `'bundledDependencies'`
 
@@ -147,8 +137,3 @@ Type: `boolean`<br>
 Default: `false`
 
 Traverse up the file hierarchy looking for dependencies like `require()`, rather than the default grunt-like behavior of loading tasks only in the immediate `node_modules` directory.
-
-
-## License
-
-MIT © [Sindre Sorhus](https://sindresorhus.com)
