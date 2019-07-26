@@ -36,7 +36,7 @@
 		"resolve-pkg": "^2.0.0"
 	},
 	"devDependencies": {
-		"grunt": "^1.0.1",
+		"grunt": "^1.0.4",
 		"grunt-cli": "^1.2.0",
 		"grunt-svgmin": "^6.0.0",
 		"xo": "^0.24.0"

@@ -11,6 +11,10 @@ module.exports = (grunt, options = {}) => {
 
 	let cwd = process.cwd();
 	let config = options.config || pkgUp.sync();
+	if (['undefined', null].indexOf(config) > 0) {
+		console.error('\x1b[41m%s\x1b[0m', 'ABORTED: package.json not found.\nPlease be sure to create a package.json and install all dependecies before run a grunt task.');
+		return false;
+	}
 	if (typeof config === 'string') {
 		const configPath = path.resolve(config);
 		cwd = path.dirname(configPath);
