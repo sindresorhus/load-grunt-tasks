@@ -13,7 +13,7 @@ module.exports = (grunt, options = {}) => {
 	let config = options.config || pkgUp.sync();
 
 	if (config === null) {
-		grunt.fail.fatal('package.json not found.\nPlease make sure to create a package.json and install all dependecies before run a grunt task.');
+		grunt.fail.fatal('package.json not found.\nPlease make sure to create a package.json and install all dependencies before you run Grunt.');
 	}
 
 	if (typeof config === 'string') {
